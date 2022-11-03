@@ -49,6 +49,7 @@ body {
   -webkit-box-shadow: 10px 10px 60px -31px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 60px -31px rgba(0, 0, 0, 0.75);
   box-shadow: 10px 10px 60px -31px rgba(0, 0, 0, 0.75);
+  user-select: none;
 }
 
 .home-direita p,
