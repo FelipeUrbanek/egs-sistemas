@@ -1,21 +1,21 @@
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import NextLink from 'next/link'
 import { initializeApp } from 'firebase/app'
 import { getFirestore, collection } from 'firebase/firestore'
-import { getDocs, addDoc } from 'firebase/firestore'
+import { addDoc } from 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyB7WJC0O2wXAzssaHfJj9GEUZH1lp8mw3Q',
-  authDomain: 'egs-sistemas.firebaseapp.com',
-  projectId: 'egs-sistemas',
-  storageBucket: 'egs-sistemas.appspot.com',
-  messagingSenderId: '1056066729202',
-  appId: '1:1056066729202:web:05647346d66f2309ea8c6b',
-  measurementId: 'G-9D8R9236EC'
+  apiKey: 'AIzaSyDp-flw9XmSWydAy7iwcuwJwHZahd9Cbbs',
+  authDomain: 'loginegs.firebaseapp.com',
+  projectId: 'loginegs',
+  storageBucket: 'loginegs.appspot.com',
+  messagingSenderId: '755106316788',
+  appId: '1:755106316788:web:ba2b2539d389e893e1b9a1',
+  measurementId: 'G-NGVWVEN9Q7'
 }
 
-const app = initializeApp(firebaseConfig)
+const app = initializeApp(firebaseConfig) // <--- inicializar o firebase
 
 function App() {
   const [nome, setNome] = useState('')
@@ -26,7 +26,8 @@ function App() {
   const [checkbox, setCheckbox] = useState(false)
   const [users, setUsers] = useState([])
   const db = getFirestore(app)
-  const userColletionRef = collection(db, 'user')
+  const timestamp = new Date().getTime() // USEI timestamp PARA ORDENAR POR DATA o cadastros depois
+  const userColletionRef = collection(db, 'users')
 
   async function criarUsuario() {
     console.log(nome, sobrenome, idade, email, cpf, checkbox)
@@ -35,24 +36,12 @@ function App() {
       sobrenome,
       idade,
       email,
-      cpf
+      cpf,
+      timestamp
     })
-    console.log('Document written with ID: ', docRef.id)
+    console.log('Document written with ID: ', docRef.id) // controle pra saber em qual banco foi salvo
   }
 
-  /*   useEffect(() => {
-    const getUsers = async () => {
-      const data = await getDocs(userColletionRef)
-      const users = data.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }))
-      setUsers(users)
-      console.log(users)
-    }
-    getUsers()
-  }, [])
- */
   const handleSubmit = e => {
     if (
       nome === '' ||
@@ -62,11 +51,10 @@ function App() {
       cpf === '' ||
       checkbox === false
     ) {
-      e.preventDefault()
-      alert('Preencha todos os campos')
+      e.preventDefault() // <--- previnir o submit
+      alert('Preencha todos os campos') // <--- alerta se não preencher
     } else {
       criarUsuario()
-
       //save dados in session storage
     }
   }
@@ -143,7 +131,7 @@ function App() {
               onClick={handleSubmit}
               className="linkbtn"
             >
-              <button type="button" class="btn btn-primary" id="btn">
+              <button type="button" className="btn btn-primary" id="btn">
                 ENVIAR
               </button>
             </NextLink>

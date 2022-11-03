@@ -3,37 +3,50 @@ import NextLink from 'next/link'
 import { useEffect, useState } from 'react'
 import { initializeApp } from 'firebase/app'
 import { getFirestore, collection } from 'firebase/firestore'
-import { getDocs, addDoc } from 'firebase/firestore'
+import { getDocs } from 'firebase/firestore'
 
-/* const firebaseConfig = {
-  apiKey: 'AIzaSyB7WJC0O2wXAzssaHfJj9GEUZH1lp8mw3Q',
-  authDomain: 'egs-sistemas.firebaseapp.com',
-  projectId: 'egs-sistemas',
-  storageBucket: 'egs-sistemas.appspot.com',
-  messagingSenderId: '1056066729202',
-  appId: '1:1056066729202:web:05647346d66f2309ea8c6b',
-  measurementId: 'G-9D8R9236EC'
-}
+//ACHEI MAIS SIMPLES FAZER TUDO JA NA FUNÇÃO , DO OUTRO MODO TAVA COM PROBLEMAS DE LOOPS INFINITOS EM ALGUNS CASOS
 
-const app = initializeApp(firebaseConfig)
-const db = getFirestore(app)
-const usersCollection = collection(db, 'user')
+export default function Cadastros() {
+  const firebaseConfig = {
+    apiKey: 'AIzaSyDp-flw9XmSWydAy7iwcuwJwHZahd9Cbbs',
+    authDomain: 'loginegs.firebaseapp.com',
+    projectId: 'loginegs',
+    storageBucket: 'loginegs.appspot.com',
+    messagingSenderId: '755106316788',
+    appId: '1:755106316788:web:ba2b2539d389e893e1b9a1',
+    measurementId: 'G-NGVWVEN9Q7'
+  }
 
-var [usuarios, setUsuario] = useState({})
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig)
+  const db = getFirestore(app)
 
-async function getUsers() {
-  const data = await getDocs(usersCollection)
-  const users = data.docs.map(doc => ({
-    id: doc.id,
-    ...doc.data()
-  }))
-  const usersObj = Object.assign({}, users)
-  setUsuario(usersObj)
-}
-getUsers()
-console.log(usuarios) */
+  const userColletionRef = collection(db, 'users')
+  const [users, setUsers] = useState([])
+  const [ultimonome, setUltimonome] = useState('')
+  const [ultimosobrenome, setUltimosobrenome] = useState('')
 
-function App() {
+  //USEEFFECT PARA USUARIOS
+  useEffect(() => {
+    const getUsers = async () => {
+      const data = await getDocs(userColletionRef)
+      const users = data.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }))
+
+      //COMO O FIREBASE NÃO ORDENA POR DATA, EU ORDENO AQUI
+      const userstimestamp = users.sort((a, b) => b.timestamp - a.timestamp)
+
+      setUsers(userstimestamp)
+
+      setUltimonome(userstimestamp[0].nome) // <--- PEGAR O ULTIMO NOME CADASTRADO
+      setUltimosobrenome(userstimestamp[0].sobrenome) // <--- PEGAR O ULTIMO SOBRENOME CADASTRADO (ACHEI QUE SERIA MAIS FACIL QUE COLOCAR NO "HTML")
+    }
+    getUsers()
+  }, [])
+
   return (
     <div className="cadastros">
       <Head>
@@ -47,6 +60,9 @@ function App() {
         />
         <link rel="stylesheet" href="./styles/cadastros.css" />
       </Head>
+
+      {/* criar header e resto da pagina aqui */}
+
       <div className="navbar-bg">
         <nav class="navbar navbar-expand-lg ">
           <NextLink href="/" className="navbar-brand" id="btn">
@@ -54,8 +70,8 @@ function App() {
           </NextLink>
 
           <div className="nav-names">
-            <p>Felipe</p>
-            <p>Urbanek</p>
+            <p>{ultimonome}</p>
+            <p>{ultimosobrenome}</p>
           </div>
         </nav>
       </div>
@@ -66,42 +82,44 @@ function App() {
               <h5>NOME:</h5>
             </div>
             <div className="col-3">
-              <h5>SOBRENOME</h5>
+              <h5>SOBRENOME:</h5>
             </div>
             <div className="col-1">
-              <h5>DATA</h5>
+              <h5>DATA:</h5>
             </div>
             <div className="col-3">
-              <h5>E-MAIL</h5>
+              <h5>E-MAIL:</h5>
             </div>
             <div className="col-3">
-              <h5>CPF</h5>
+              <h5>CPF:</h5>
             </div>
           </div>
         </section>
 
         <section>
-          <div className="row cadastrados">
-            <div className="col-2">
-              <p>Felipe</p>
+          {' '}
+          {/* Criada uma section para receber os dados do firebase */}
+          {users.map(user => (
+            <div className="row cadastrados">
+              <div className="col-2">
+                <p>{user.nome}</p>
+              </div>
+              <div className="col-3">
+                <p>{user.sobrenome}</p>
+              </div>
+              <div className="col-1">
+                <p>{user.idade}</p>
+              </div>
+              <div className="col-3">
+                <p>{user.email}</p>
+              </div>
+              <div className="col-3">
+                <p>{user.cpf}</p>
+              </div>
             </div>
-            <div className="col-3">
-              <p>Urbanek</p>
-            </div>
-            <div className="col-1">
-              <p>1112122</p>
-            </div>
-            <div className="col-3">
-              <p>carkiss</p>
-            </div>
-            <div className="col-3">
-              <p>0333232323</p>
-            </div>
-          </div>
+          ))}
         </section>
       </div>
     </div>
   )
 }
-
-export default App
