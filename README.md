@@ -1,4 +1,4 @@
-# **Projeto realizado como  teste pela [EGS-SISTEMAS](https://egssistemas.com.br)**
+# **Projeto realizado como  teste para a [EGS-SISTEMAS](https://egssistemas.com.br)**
 
 
 
