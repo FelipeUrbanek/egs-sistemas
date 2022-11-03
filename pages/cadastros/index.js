@@ -64,7 +64,7 @@ export default function Cadastros() {
       {/* criar header e resto da pagina aqui */}
 
       <div className="navbar-bg">
-        <nav class="navbar navbar-expand-lg ">
+        <nav className="navbar navbar-expand-lg ">
           <NextLink href="/" className="navbar-brand" id="btn">
             <img src="./imgs/logo.svg" alt="logo" className="img-fluid" />
           </NextLink>
@@ -100,7 +100,7 @@ export default function Cadastros() {
           {' '}
           {/* Criada uma section para receber os dados do firebase */}
           {users.map(user => (
-            <div className="row cadastrados">
+            <div key={user.id} className="row cadastrados">
               <div className="col-2">
                 <p>{user.nome}</p>
               </div>
