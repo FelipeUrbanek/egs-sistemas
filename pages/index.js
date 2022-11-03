@@ -53,8 +53,7 @@ function App() {
       e.preventDefault() // <--- previnir o submit
       alert('Preencha todos os campos') // <--- alerta se não preencher
     } else {
-      criarUsuario()
-      //save dados in session storage
+      criarUsuario() // <--- se preenchido é chamada a função para criar o usuario
     }
   }
 
