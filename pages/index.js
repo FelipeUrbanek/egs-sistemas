@@ -29,7 +29,7 @@ function App() {
   const timestamp = new Date().getTime() // USEI timestamp PARA ORDENAR POR DATA o cadastros depois
   const userColletionRef = collection(db, 'users')
 
-  async function criarUsuario() {
+  async function createUsers() {
     const docRef = await addDoc(userColletionRef, {
       nome,
       sobrenome,
@@ -53,9 +53,11 @@ function App() {
       e.preventDefault() // <--- previnir o submit
       alert('Preencha todos os campos') // <--- alerta se não preencher
     } else {
-      criarUsuario() // <--- se preenchido é chamada a função para criar o usuario
+      createUsers() // <--- se preenchido é chamada a função para criar o usuario no banco
     }
   }
+
+  ///AQUI É O HTML que vai ser renderizado, preferi usar head para organizar e importar mais facil o bootstrap que ia agilizar o desenvolvimento
 
   return (
     <div className="home">
@@ -73,9 +75,13 @@ function App() {
       </Head>
       <div className="container ">
         <div className="row home">
+          {/* //AQUI ONDE ESTÁ A IMAGEM */}
           <div className="col-5 home-esquerda">
             <img src="./imgs/logo.svg" alt="logo" />
           </div>
+
+          {/* //AQUI É O FORMULARIO QUE VAI SER RENDERIZADO */}
+
           <div className="col-5 home-direita">
             <h2>TESTE</h2>
             <h3>EGS SISTEMAS</h3>

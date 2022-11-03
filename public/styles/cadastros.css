@@ -49,6 +49,7 @@ p {
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   color: #fcfafa;
+  user-select: none;
 }
 
 .cadastrados {
@@ -60,4 +61,5 @@ p {
   font-family: 'Roboto', sans-serif;
   font-weight: 600;
   border-bottom: 2px solid transparent;
+  user-select: text;
 }
