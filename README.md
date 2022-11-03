@@ -1,8 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Projeto realizado como  teste pela EGS-SISTEMAS
 
-## Fetting Started
 
-First, run the development server:
+
+
+
+
+
+## Tela 1
+
+
+
+Foi minha segunda experiencia com react, então tive grandes dificuldades, e com isso grandes aprendizados também.
+
+Primeiro realizando uma tela de cadastro nela é possivel incluir seus dados que devem ser mostrados na tela posterior, lembrando que não é possivel continuar se houver campos em branco ou não aceitar os termos.
+
+
+
+<img src="https://raw.githubusercontent.com/FelipeUrbanek/egs-sistemas/main/public/imgs/imgs-markdown/home.png" style="zoom:60%;" />
+
+------
+
+## Tela 2
+
+
+
+Resolvi usar nesse projeto o [firebase](https://console.firebase.google.com) utilizando o firestore para gravar e receber esses dados, e também como formatação dos inputs o [react-input-mask](https://www.npmjs.com/package/react-input-mask) 
+
+
+
+<img src="https://raw.githubusercontent.com/FelipeUrbanek/egs-sistemas/main/public/imgs/imgs-markdown/cadastros.png" style="zoom:50%;" />
+
+
+
+Essa tela deve exibir o usuario cadastrado na anterior , além de mostrar nome e sobrenome do ultimo usuario cadastrado no canto superior direito, tendo a opção de voltar a tela anterior clicando na logo.
+
+------
+
+## Projeto com deploy na vercel
+
+Podendo ser acessado no link:
+
+[https://egs-sistemas.vercel.app](https://egs-sistemas.vercel.app)
+
+
+
+Você pode baixar o projeto e executa-lo com o comando abaixo.
 
 ```bash
 npm run dev
@@ -10,25 +52,6 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir em  [http://localhost:3000](http://localhost:3000) em seu navegador e verá o projeto rodando.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
