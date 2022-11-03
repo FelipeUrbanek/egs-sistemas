@@ -30,7 +30,6 @@ function App() {
   const userColletionRef = collection(db, 'users')
 
   async function criarUsuario() {
-    console.log(nome, sobrenome, idade, email, cpf, checkbox)
     const docRef = await addDoc(userColletionRef, {
       nome,
       sobrenome,
