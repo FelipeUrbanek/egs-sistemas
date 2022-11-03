@@ -4,6 +4,7 @@ import NextLink from 'next/link'
 import { initializeApp } from 'firebase/app'
 import { getFirestore, collection } from 'firebase/firestore'
 import { addDoc } from 'firebase/firestore'
+import ReactInputMask from 'react-input-mask'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDp-flw9XmSWydAy7iwcuwJwHZahd9Cbbs',
@@ -24,7 +25,6 @@ function App() {
   const [email, setEmail] = useState('')
   const [cpf, setCpf] = useState('')
   const [checkbox, setCheckbox] = useState(false)
-  const [users, setUsers] = useState([])
   const db = getFirestore(app)
   const timestamp = new Date().getTime() // USEI timestamp PARA ORDENAR POR DATA o cadastros depois
   const userColletionRef = collection(db, 'users')
@@ -80,47 +80,50 @@ function App() {
             <h2>TESTE</h2>
             <h3>EGS SISTEMAS</h3>
             <p>NOME:</p>
-            <input
+            <ReactInputMask
               type="text"
               placeholder="Escreva seu nome"
               id="nome"
               onChange={e => setNome(e.target.value)}
-            />
+            ></ReactInputMask>
             <p>SOBRENOME</p>
-            <input
+            <ReactInputMask
               type="text"
               placeholder="Escreva seu sobrenome"
               id="sobrenome"
               onChange={e => setSobrenome(e.target.value)}
-            />
+            ></ReactInputMask>
             <p>IDADE</p>
-            <input
-              type="text"
-              placeholder="00/00/00"
+            <ReactInputMask
+              typeof="text"
+              placeholder="00/00/0000"
+              mask="99/99/9999"
               id="idade"
               onChange={e => setIdade(e.target.value)}
-            />
+            ></ReactInputMask>
+
             <p>E-MAIL</p>
-            <input
+            <ReactInputMask
               type="text"
               placeholder="Escreva seu e-mail"
               id="email"
               onChange={e => setEmail(e.target.value)}
-            />
+            ></ReactInputMask>
             <p>CPF</p>
-            <input
+            <ReactInputMask
               type="text"
               placeholder="000.000.000-00"
               id="cpf"
+              mask="999.999.999-99"
               onChange={e => setCpf(e.target.value)}
-            />
+            ></ReactInputMask>
             <div className="termos col-12">
-              <input
+              <ReactInputMask
                 type="checkbox"
                 className="checkbox"
                 id="checkbox"
                 onChange={e => setCheckbox(e.target.value)}
-              />
+              ></ReactInputMask>
               <p>ACEITO OS TERMOS DE USO</p>
             </div>
 

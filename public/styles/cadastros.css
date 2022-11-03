@@ -39,6 +39,7 @@ p {
   color: #fcfafa;
   font-size: 32px;
   margin: 0px 2px;
+  text-transform: uppercase;
 }
 
 .cadastros-line {
