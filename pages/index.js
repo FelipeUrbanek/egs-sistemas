@@ -5,6 +5,7 @@ import { initializeApp } from 'firebase/app'
 import { getFirestore, collection } from 'firebase/firestore'
 import { addDoc } from 'firebase/firestore'
 import ReactInputMask from 'react-input-mask'
+import { validateEmail } from '../public/regex'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDp-flw9XmSWydAy7iwcuwJwHZahd9Cbbs',
@@ -23,6 +24,7 @@ function App() {
   const [sobrenome, setSobrenome] = useState('')
   const [idade, setIdade] = useState('')
   const [email, setEmail] = useState('')
+  const [emailerror, setEmailerror] = useState(false)
   const [cpf, setCpf] = useState('')
   const [checkbox, setCheckbox] = useState(false)
   const db = getFirestore(app)
@@ -52,8 +54,20 @@ function App() {
     ) {
       e.preventDefault() // <--- previnir o submit
       alert('Preencha todos os campos') // <--- alerta se não preencher
+    } else if (
+      /* verificar se mes é maior que 12 ou dia maior que 31 */
+      idade.split('/')[1] > 12 ||
+      idade.split('/')[0] > 31
+    ) {
+      e.preventDefault() // <--- previnir o submit
+      alert('Data de nascimento inválida') // <--- alerta se não preencher
+    } else if (validateEmail.test(email) === false) {
+      e.preventDefault()
+      setEmailerror(true)
+
+      alert('Email inválido') // <--- alerta se email não passar o teste no regex
     } else {
-      createUsers() // <--- se preenchido é chamada a função para criar o usuario no banco
+      createUsers() // <--- se preenchido e data valida é chamada a função para criar o usuario no banco
     }
   }
 
@@ -112,6 +126,7 @@ function App() {
             <ReactInputMask
               type="text"
               placeholder="Escreva seu e-mail"
+              mask=""
               id="email"
               onChange={e => setEmail(e.target.value)}
             ></ReactInputMask>
