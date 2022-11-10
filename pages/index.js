@@ -55,15 +55,19 @@ function App() {
       e.preventDefault() // <--- previnir o submit
       alert('Preencha todos os campos') // <--- alerta se não preencher
     } else if (
-      /* verificar se mes é maior que 12 ou dia maior que 31 */
+      /* verificar se mes é maior que 12 ou dia maior que 31 e adicionado que ano não pode ser maior que o ano atual.*/
       idade.split('/')[1] > 12 ||
-      idade.split('/')[0] > 31
+      idade.split('/')[0] > 31 ||
+      idade.split('/')[2] > new Date().getFullYear()
     ) {
       e.preventDefault() // <--- previnir o submit
       alert('Data de nascimento inválida') // <--- alerta se não preencher
+
+      idade.style.border = '1px solid red' // <--- adicionar borda vermelha no input
     } else if (validateEmail.test(email) === false) {
       e.preventDefault()
       setEmailerror(true)
+      email.style.border = '1px solid red'
 
       alert('Email inválido') // <--- alerta se email não passar o teste no regex
     } else {
