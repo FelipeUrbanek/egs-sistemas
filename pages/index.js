@@ -17,6 +17,8 @@ const firebaseConfig = {
   measurementId: 'G-NGVWVEN9Q7'
 }
 
+//pode ser adicionado em uma variavel de ambiente
+
 const app = initializeApp(firebaseConfig) // <--- inicializar o firebase
 
 function App() {
@@ -62,14 +64,24 @@ function App() {
     ) {
       e.preventDefault() // <--- previnir o submit
       var input = document.getElementById('idade')
-      input.style.border = '1px solid red'
+      input.style.border = '1px solid red' // <--- adicionar borda vermelha
+
+      input.addEventListener('change', function () {
+        input.style.border = '1px solid #b5b5b5'
+      }) // <--- remover borda vermelha quando mudar o valor
+
       alert('Data de nascimento inválida') // <--- alerta se não preencher
     } else if (validateEmail.test(email) === false) {
       e.preventDefault()
       setEmailerror(true) // <--- validação do e-mail
+
       alert('Email inválido')
+
       var input = document.getElementById('email')
       input.style.border = '1px solid red'
+      input.addEventListener('change', function () {
+        input.style.border = '1px solid #b5b5b5'
+      })
     } else {
       createUsers() // <--- se preenchido e data valida é chamada a função para criar o usuario no banco
     }
