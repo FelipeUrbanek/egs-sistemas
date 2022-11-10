@@ -61,12 +61,15 @@ function App() {
       idade.split('/')[2] > new Date().getFullYear()
     ) {
       e.preventDefault() // <--- previnir o submit
+      var input = document.getElementById('idade')
+      input.style.border = '1px solid red'
       alert('Data de nascimento inválida') // <--- alerta se não preencher
     } else if (validateEmail.test(email) === false) {
       e.preventDefault()
-      setEmailerror(true)
-
-      alert('Email inválido') // <--- alerta se email não passar o teste no regex
+      setEmailerror(true) // <--- validação do e-mail
+      alert('Email inválido')
+      var input = document.getElementById('email')
+      input.style.border = '1px solid red'
     } else {
       createUsers() // <--- se preenchido e data valida é chamada a função para criar o usuario no banco
     }
