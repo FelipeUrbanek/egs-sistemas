@@ -62,12 +62,9 @@ function App() {
     ) {
       e.preventDefault() // <--- previnir o submit
       alert('Data de nascimento inválida') // <--- alerta se não preencher
-
-      idade.style.border = '1px solid red' // <--- adicionar borda vermelha no input
     } else if (validateEmail.test(email) === false) {
       e.preventDefault()
       setEmailerror(true)
-      email.style.border = '1px solid red'
 
       alert('Email inválido') // <--- alerta se email não passar o teste no regex
     } else {
