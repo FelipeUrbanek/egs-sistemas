@@ -66,7 +66,11 @@ export default function Cadastros() {
       <div className="navbar-bg">
         <nav className="navbar navbar-expand-lg ">
           <NextLink href="/" className="navbar-brand" id="btn">
-            <img src="./imgs/logo.svg" alt="logo" className="img-fluid" />
+            <img
+              src="./imgs/logo.svg"
+              alt="logo"
+              className="img-fluid img-navbar"
+            />
           </NextLink>
 
           <div className="nav-names">

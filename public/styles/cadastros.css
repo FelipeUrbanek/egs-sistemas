@@ -63,3 +63,6 @@ p {
   border-bottom: 2px solid transparent;
   user-select: text;
 }
+.img-navbar {
+  max-width: 50%;
+}
